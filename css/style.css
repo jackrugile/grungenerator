@@ -31,9 +31,9 @@ a {
 }
 
 /*==============================================================================*/
-/* Sidebar */
+/* Panel */
 /*==============================================================================*/
-aside {
+.panel {
 	background: #111;
 	border-right: 1px solid #000;
 	box-sizing: border-box;	
@@ -49,138 +49,160 @@ aside {
 /*==============================================================================*/
 /* Header */
 /*==============================================================================*/
-header {
-	border-bottom: 1px solid #000;
-	box-shadow: 0 1px 0 #222;
-	height: 44px;
-	margin: 0 0 14px;
-	text-align: center;
-}
-
 header h1 {
 	color: #fff;
-	font-size: 18px;
-	font-weight: 300;
+	font-size: 17px;
+	height: 44px;
 	line-height: 44px;
-	padding: 0 14px;
-	text-align: right;
+	text-align: center;
 }
 
 header h1 strong {
 	color: #f33;
-	font-weight: 700;
+	font-weight: bold;
+}
+
+header h1 span {
+	color: #999;
+	font-size: 10px;
+	margin: 0 0 0 3px;
+	position: relative;
+	text-transform: uppercase;
+	top: -6px;
 }
 
 /*==============================================================================*/
 /* Controls */
 /*==============================================================================*/
-#controls {
-	border-bottom: 1px solid #000;
-	box-shadow: 0 1px 0 #222;
-	margin: 0 0 14px;	
+.controls {
+	margin: 0 0 1px;
 }
 
 section {
-	margin: 0 0 14px;	
-	padding: 0 14px;
+	margin: 0 0 1px;	
+	padding: 0;
 }
+
+.controls .right {
+	float: right;
+	width: 190px;
+}	
 
 label {
 	background: #222;
 	box-sizing: border-box;	
 	color: #fff;
 	display: block;
-	float: left;
 	font-size: 11px;
-	height: 28px;
-	line-height: 28px;
-	margin: 0;
+	height: 22px;
+	line-height: 22px;
+	margin: 0 0 1px;
+	overflow: hidden;
 	padding: 0 7px;
-	width: 172px;
-	text-align: right;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+section:nth-child(2n) label {
+	background: #333;
 }
 
 input[type="text"] {
-	background: #000;
-	border: 1px solid #000;
+	background: #222;
+	border: 1px solid #222;
 	box-sizing: border-box;	
 	color: #fff;
 	display: block;
-	float: right;
-	font: normal 11px/28px helvetica, arial, sans-serif;
-	height: 28px;
+	float: left;
+	font: normal 11px/35px helvetica, arial, sans-serif;
+	height: 35px;
 	margin: 0;
-	padding: 0 7px;
+	padding: 0 12px;
 	transition: all 200ms;
-	width: 60px;
+	width: 69px;
 }
 
-input[type="text"]:focus {
+section:nth-child(2n) input[type="text"] {
+	background: #333;
+	border-color: #333;
+}
+
+input[type="text"]:focus,
+section:nth-child(2n) input[type="text"]:focus {
 	border-color: #f33;
 }
 
 .button {
-	background: #333;
+	background: #222;
+	box-shadow:	inset -5px 0 0 #333;
 	color: #fff;
 	display: block;
-	font-size: 12px;	
-	height: 28px;
-	line-height: 28px;
-	margin: 0 14px 1px;
-	padding: 0 14px;
-	text-align: right;	
+	font-size: 11px;
+	font-weight: normal;
+	height: 35px;
+	line-height: 35px;
+	margin: 0 0 1px;
+	padding: 0 12px;
+	text-align: left;	
 	transition: all 200ms;
 }
 
-.button:hover,
-.button:focus {
-	background: #444;
-	padding-right: 24px;
-}
-
-.button.main {
-	background: #f33;
-	font-weight: bold;
-}
-
-.button.main:hover,
-.button.main:focus {
-	background: #f66;
+.button:hover {
+	background: #333;
+	box-shadow: inset -5px 0 0 #f33;
+	color: #fff;
+	padding-left: 24px;
 }
 
 /*==============================================================================*/
 /* Canvas */
 /*==============================================================================*/
+.canvas-container {
+	box-sizing: border-box;	
+	height: 100%;
+	right: 0;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+}
+
 canvas {
 	background: #000;
+	/*box-shadow: inset 0 0 0 1px #f33;*/
 	cursor: move;
-	display: inline-block;
+	display: block;
+	left: 44px;
 	position: relative;
-	margin: 44px 44px 44px 300px;
+	top: 44px;	
 }
 
 /*==============================================================================*/
 /* jQuery UI */
 /*==============================================================================*/
 .ui-slider { 
-	background: #333;
-	border-right: 14px solid #333;
+	background: #222;
+	border-right: 24px solid #222;
 	clear: both;
-	height: 14px;
+	height: 12px;
 	margin: 0; 
 	position: relative; 
 	text-align: left; 
 }
 
+section:nth-child(2n) .ui-slider {
+	background: #333;
+	border-color: #333;
+}
+
 .ui-slider .ui-slider-handle { 
-	background: #666;
-	cursor: pointer;
-	height: 14px;
+	background: #555;
+	cursor: e-resize;
+	height: 12px;
 	margin: 0;
 	position: absolute;
 	top: 0;
 	transition: background 200ms;
-	width: 14px; 
+	width: 24px; 
 	z-index: 2;
 }
 

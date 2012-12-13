@@ -13,48 +13,54 @@
 		<meta property="og:title" content="Gritomatic" />
 		<meta property="og:description" content="Generate grungy, gritty, worn, distressed textures with HTML5 canvas." />		
 		<meta property="og:site_name" content="GrunGenerator" />
-		<meta property="og:image" content="http://jackrugile.com/lab/grungenerator/img/fb.png" />
-		<meta property="og:url" content="http://jackrugile.com/lab/grungenerator/" />
+		<meta property="og:image" content="http://jackrugile.com/grungenerator/img/fb.png" />
+		<meta property="og:url" content="http://jackrugile.com/grungenerator/" />
 		<meta property="og:type" content="website" />
 		<!--[if IE]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 		<link href="css/style.css" rel="stylesheet" />
-		<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />		
+		<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />		
 	</head>
 	<body>
-	
-	<aside>
-		<header>
-			<h1><strong>Grun</strong>Generator</h1>
-		</header>
-			
-			<div id="controls">
+		<div class="panel">
+			<header>
+				<h1><strong>Grun</strong>Generator<span>Beta</span></h1>
+			</header>			
+			<div class="controls">
 				<section class="clearfix">
-					<label>Width</label>
-					<input type="text" id="gg-width" />
-					<div id="gg-width-slider"></div>				
-				</section>
-				
+					<input type="text" id="gg-width" tabindex="1" />
+					<div class="right">
+						<label for="gg-width">Width</label>					
+						<div id="gg-width-slider"></div>
+					</div>				
+				</section>				
 				<section class="clearfix">
-					<label>Height</label>
-					<input type="text" id="gg-height" />
-					<div id="gg-height-slider"></div>				
-				</section>
-				
+					<input type="text" id="gg-height" tabindex="2" />
+					<div class="right">
+						<label for="gg-height">Height</label>					
+						<div id="gg-height-slider"></div>	
+					</div>			
+				</section>				
 				<section class="clearfix">
-					<label>Particle Count</label>
-					<input type="text" id="gg-particle-count" />
-					<div id="gg-particle-count-slider"></div>				
+					<input type="text" id="gg-particle-count" tabindex="3" />
+					<div class="right">
+						<label for="gg-particle-count">Particle Count</label>					
+						<div id="gg-particle-count-slider"></div>
+					</div>			
 				</section>
-			</div>
-			
-		<a href="#" class="button main" id="gg-generate">Generate</a>
-		<a href="#" class="button" id="gg-export">Export PNG</a>
-			<a href="#" class="button" id="gg-reset">Reset</a>			
-		</aside>
-		
-		<div id="canvas-container">
-		</div>
-		
+				<section class="clearfix">					
+					<input type="text" id="gg-polygon-count" tabindex="4" />
+					<div class="right">
+						<label for="gg-polygon-count">Polygon Count</label>					
+						<div id="gg-polygon-count-slider"></div>
+					</div>				
+				</section>
+			</div><!-- end .controls -->			
+			<a href="#" class="button" id="gg-generate" tabindex="5">Generate</a>
+			<a href="#" class="button" id="gg-export" tabindex="6">Export PNG</a>
+			<a href="#" class="button" id="gg-reset" tabindex="7">Reset</a>			
+		</div><!-- end .panel -->		
+		<div class="canvas-container">
+	</div><!-- end .canvas-container -->	
 <script src="js/lib.js"></script>
 		<script src="js/grungenerator.js"></script>
 		<script src="js/main.js"></script>
