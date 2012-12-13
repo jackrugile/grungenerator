@@ -1,0 +1,228 @@
+/*==============================================================================*/
+/* CSS Reset */
+/*==============================================================================*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{ margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent}body{ line-height:1}article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary{ display:block}nav ul{ list-style:none}blockquote,q{ quotes:none}blockquote:before,blockquote:after,q:before,q:after{ content:''; content:none}a{ margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent}ins{ background-color:#ff9; color:#000; text-decoration:none}mark{ background-color:#ff9; color:#000; font-style:italic; font-weight:bold}del{ text-decoration:line-through}abbr[title],dfn[title]{ border-bottom:1px dotted #000; cursor:help}table{ border-collapse:collapse; border-spacing:0}hr{ display:block; height:1px; border:0;  border-top:1px solid #ccc; margin:1em 0; padding:0}input,select{ vertical-align:middle}
+
+/*==============================================================================*/
+/* General */
+/*==============================================================================*/
+body {
+	background: #191919;
+	color: #fff;
+	font: 100%/20px helvetica, arial, sans-serif;	
+}
+
+/*==============================================================================*/
+/* Typography */
+/*==============================================================================*/
+a {
+	text-decoration: none;
+}	
+
+::-moz-selection, 
+::selection { 
+	background: #f33 !important;
+	color: #fff !important;
+	text-shadow: none !important;
+}
+
+:focus {
+	outline: none;	
+}
+
+/*==============================================================================*/
+/* Sidebar */
+/*==============================================================================*/
+aside {
+	background: #111;
+	border-right: 1px solid #000;
+	box-sizing: border-box;	
+	box-shadow: 1px 0 0 #222;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 261px;
+	z-index: 2;
+}
+
+/*==============================================================================*/
+/* Header */
+/*==============================================================================*/
+header {
+	border-bottom: 1px solid #000;
+	box-shadow: 0 1px 0 #222;
+	height: 44px;
+	margin: 0 0 14px;
+	text-align: center;
+}
+
+header h1 {
+	color: #fff;
+	font-size: 18px;
+	font-weight: 300;
+	line-height: 44px;
+	padding: 0 14px;
+	text-align: right;
+}
+
+header h1 strong {
+	color: #f33;
+	font-weight: 700;
+}
+
+/*==============================================================================*/
+/* Controls */
+/*==============================================================================*/
+#controls {
+	border-bottom: 1px solid #000;
+	box-shadow: 0 1px 0 #222;
+	margin: 0 0 14px;	
+}
+
+section {
+	margin: 0 0 14px;	
+	padding: 0 14px;
+}
+
+label {
+	background: #222;
+	box-sizing: border-box;	
+	color: #fff;
+	display: block;
+	float: left;
+	font-size: 11px;
+	height: 28px;
+	line-height: 28px;
+	margin: 0;
+	padding: 0 7px;
+	width: 172px;
+	text-align: right;
+}
+
+input[type="text"] {
+	background: #000;
+	border: 1px solid #000;
+	box-sizing: border-box;	
+	color: #fff;
+	display: block;
+	float: right;
+	font: normal 11px/28px helvetica, arial, sans-serif;
+	height: 28px;
+	margin: 0;
+	padding: 0 7px;
+	transition: all 200ms;
+	width: 60px;
+}
+
+input[type="text"]:focus {
+	border-color: #f33;
+}
+
+.button {
+	background: #333;
+	color: #fff;
+	display: block;
+	font-size: 12px;	
+	height: 28px;
+	line-height: 28px;
+	margin: 0 14px 1px;
+	padding: 0 14px;
+	text-align: right;	
+	transition: all 200ms;
+}
+
+.button:hover,
+.button:focus {
+	background: #444;
+	padding-right: 24px;
+}
+
+.button.main {
+	background: #f33;
+	font-weight: bold;
+}
+
+.button.main:hover,
+.button.main:focus {
+	background: #f66;
+}
+
+/*==============================================================================*/
+/* Canvas */
+/*==============================================================================*/
+canvas {
+	background: #000;
+	cursor: move;
+	display: inline-block;
+	position: relative;
+	margin: 44px 44px 44px 300px;
+}
+
+/*==============================================================================*/
+/* jQuery UI */
+/*==============================================================================*/
+.ui-slider { 
+	background: #333;
+	border-right: 14px solid #333;
+	clear: both;
+	height: 14px;
+	margin: 0; 
+	position: relative; 
+	text-align: left; 
+}
+
+.ui-slider .ui-slider-handle { 
+	background: #666;
+	cursor: pointer;
+	height: 14px;
+	margin: 0;
+	position: absolute;
+	top: 0;
+	transition: background 200ms;
+	width: 14px; 
+	z-index: 2;
+}
+
+.ui-slider .ui-slider-handle:hover { 
+	background: #999; 
+}
+
+.ui-slider .ui-slider-handle:active { 
+	background: #f33; 
+}
+
+.ui-slider .ui-slider-range { 
+	background-position: 0 0;
+	border: 0; 
+	display: block;
+	font-size: .7em; 
+	height: 100%; 
+	position: absolute; 
+	top: 0;
+	z-index: 1; 	 
+}
+
+.ui-slider .ui-slider-range-min {
+	left: 0;
+
+}
+.ui-slider .ui-slider-range-max { 
+	right: 0; 
+}
+
+/*==============================================================================*/
+/* Miscellaneous */
+/*==============================================================================*/
+.clearfix:before, .clearfix:after {
+    content: '';
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
