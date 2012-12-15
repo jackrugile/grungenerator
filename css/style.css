@@ -120,7 +120,7 @@ label {
 }
 
 section:nth-child(2n) label {
-	background: #333;
+	/*background: #333;*/
 }
 
 input[type="text"] {
@@ -140,11 +140,18 @@ input[type="text"] {
 }
 
 section:nth-child(2n) input[type="text"] {
-	background: #333;
+	/*background: #333;*/
 }
 
+/*
 input[type="text"]:focus,
 section:nth-child(2n) input[type="text"]:focus {
+	background: #111;
+	box-shadow: inset 0 0 0 1px #f33;
+}
+*/
+
+input[type="text"]:focus {
 	background: #111;
 	box-shadow: inset 0 0 0 1px #f33;
 }
@@ -216,7 +223,7 @@ canvas {
 canvas:active {
 	box-shadow: 
 		inset 0 0 0 1px #f33,
-		inset 0 0 0 2000px hsla(0, 80%, 80%, .05)
+		inset 0 0 0 2000px hsla(0, 100%, 80%, .1)
 	;
 }
 
@@ -241,12 +248,12 @@ canvas:active {
 	}
 	
 	section:nth-child(2n) .ui-slider {
-		background: #333;
+		/*background: #333;
 		box-shadow: 
 			inset 1px 0 0 #111,
 			-10px 0 0 #333;
 		;
-		border-color: #333;
+		border-color: #333;*/
 	}
 	
 	.ui-slider .ui-slider-handle { 
