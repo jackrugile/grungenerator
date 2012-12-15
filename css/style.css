@@ -1,3 +1,5 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
 /*==============================================================================*/
 /* CSS Reset */
 /*==============================================================================*/
@@ -9,7 +11,11 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 body {
 	background: #191919;
 	color: #fff;
-	font: 100%/20px helvetica, arial, sans-serif;	
+	font: 400 100%/20px 'myriad-pro', helvetica, arial, sans-serif;		
+}
+
+* {
+	box-sizing: border-box;		
 }
 
 /*==============================================================================*/
@@ -30,19 +36,25 @@ a {
 	outline: none;	
 }
 
+[class*="entypo-"]:before {
+	font-family: 'entypo', sans-serif;
+	font-weight: normal !important;
+	
+}
+
 /*==============================================================================*/
 /* Panel */
 /*==============================================================================*/
 .panel {
 	background: #111;
 	border-right: 1px solid #000;
-	box-sizing: border-box;	
 	box-shadow: 1px 0 0 #222;
 	height: 100%;
 	left: 0;
-	position: fixed;
+	overflow: auto;
+	position: absolute;
 	top: 0;
-	width: 261px;
+	width: 320px;
 	z-index: 2;
 }
 
@@ -52,19 +64,22 @@ a {
 header h1 {
 	color: #fff;
 	font-size: 17px;
+	font-weight: 300;
 	height: 44px;
 	line-height: 44px;
 	text-align: center;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 }
 
 header h1 strong {
 	color: #f33;
-	font-weight: bold;
+	font-weight: 600;
 }
 
 header h1 span {
 	color: #999;
 	font-size: 10px;
+	font-weight: 600;
 	margin: 0 0 0 3px;
 	position: relative;
 	text-transform: uppercase;
@@ -83,24 +98,25 @@ section {
 	padding: 0;
 }
 
-.controls .right {
-	float: right;
-	width: 190px;
-}	
-
 label {
-	background: #222;
-	box-sizing: border-box;	
+	background: #222;	
 	color: #fff;
 	display: block;
-	font-size: 11px;
-	height: 22px;
-	line-height: 22px;
+	float: left;
+	font-size: 12px;
+	height: 32px;
+	line-height: 32px;
 	margin: 0 0 1px;
 	overflow: hidden;
-	padding: 0 7px;
+	padding: 0 10px;
 	text-overflow: ellipsis;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	width: 80%;
 	white-space: nowrap;
+}
+
+.range label {
+	width: 60%;	
 }
 
 section:nth-child(2n) label {
@@ -109,56 +125,78 @@ section:nth-child(2n) label {
 
 input[type="text"] {
 	background: #222;
-	border: 1px solid #222;
-	box-sizing: border-box;	
+	border: none;
+	border-left: 1px solid #111;
 	color: #fff;
 	display: block;
 	float: left;
-	font: normal 11px/35px helvetica, arial, sans-serif;
-	height: 35px;
+	font: 400 11px/32px 'Open Sans', helvetica, arial, sans-serif;
+	height: 32px;
 	margin: 0;
 	padding: 0 12px;
-	transition: all 200ms;
-	width: 69px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	transition: all 300ms;
+	width: 20%;
 }
 
 section:nth-child(2n) input[type="text"] {
 	background: #333;
-	border-color: #333;
 }
 
 input[type="text"]:focus,
 section:nth-child(2n) input[type="text"]:focus {
-	border-color: #f33;
+	background: #111;
+	box-shadow: inset 0 0 0 1px #f33;
 }
 
 .button {
 	background: #222;
-	box-shadow:	inset -5px 0 0 #333;
+	box-shadow:	
+		inset -5px 0 0 #333,
+		inset -6px 0 0 #111
+	;
 	color: #fff;
 	display: block;
-	font-size: 11px;
-	font-weight: normal;
-	height: 35px;
-	line-height: 35px;
+	font-size: 12px;
+	height: 32px;
+	line-height: 32px;
 	margin: 0 0 1px;
-	padding: 0 12px;
 	text-align: left;	
-	transition: all 200ms;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	transition: all 300ms;
+}
+
+.button span {
+	background: #222;
+	border-right: 1px solid #111;
+	height: 32px;
+	color: #f33;
+	display: inline-block;
+	font-size: 15px;
+	margin: 0 10px 0 0;
+	text-align: center;
+	transition: all 300ms;
+	width: 20%;
 }
 
 .button:hover {
 	background: #333;
-	box-shadow: inset -5px 0 0 #f33;
+	box-shadow:	
+		inset -5px 0 0 #f33,
+		inset -6px 0 0 #111
+	;
 	color: #fff;
-	padding-left: 24px;
+}
+
+.button:hover span {
+	background: #333;
+	margin-right: 15px;
 }
 
 /*==============================================================================*/
 /* Canvas */
 /*==============================================================================*/
 .canvas-container {
-	box-sizing: border-box;	
 	height: 100%;
 	right: 0;
 	position: fixed;
@@ -167,8 +205,7 @@ section:nth-child(2n) input[type="text"]:focus {
 }
 
 canvas {
-	background: #000;
-	/*box-shadow: inset 0 0 0 1px #f33;*/
+	background: #070707;
 	cursor: move;
 	display: block;
 	left: 44px;
@@ -176,61 +213,101 @@ canvas {
 	top: 44px;	
 }
 
+canvas:active {
+	box-shadow: 
+		inset 0 0 0 1px #f33,
+		inset 0 0 0 2000px hsla(0, 80%, 80%, .05)
+	;
+}
+
 /*==============================================================================*/
 /* jQuery UI */
 /*==============================================================================*/
-.ui-slider { 
-	background: #222;
-	border-right: 24px solid #222;
-	clear: both;
-	height: 12px;
-	margin: 0; 
-	position: relative; 
-	text-align: left; 
+	/*==============================================================================*/
+	/* Slider */
+	/*==============================================================================*/
+	.ui-slider { 
+		background: #222;
+		border-right: 10px solid #222;
+		box-shadow: 
+			inset 1px 0 0 #111,
+			-10px 0 0 #222;
+		;
+		clear: both;
+		height: 10px;
+		margin: 0 0 0 10px;
+		position: relative; 
+		text-align: left; 
+	}
+	
+	section:nth-child(2n) .ui-slider {
+		background: #333;
+		box-shadow: 
+			inset 1px 0 0 #111,
+			-10px 0 0 #333;
+		;
+		border-color: #333;
+	}
+	
+	.ui-slider .ui-slider-handle { 
+		background: #f33;
+		cursor: ew-resize;
+		height: 10px;
+		margin: 0;
+		position: absolute;
+		top: 0;
+		transition: background 300ms;
+		width: 10px; 
+		z-index: 2;	
+	}
+	
+	.ui-slider .ui-slider-handle:hover { 
+		background: #f77; 
+	}
+	
+	.ui-slider .ui-slider-handle:active { 
+		background: #fff; 
+	}
+	
+	.ui-slider .ui-slider-range { 
+		background: rgba(255, 255, 255, .15);
+		background-position: 0 0;
+		border: 0; 
+		display: block;
+		font-size: .7em; 
+		height: 100%; 
+		position: absolute; 
+		top: 0;
+		z-index: 1; 	 
+	}
+	
+	.ui-slider .ui-slider-range-min {
+		left: 0;
+	
+	}
+	.ui-slider .ui-slider-range-max { 
+		right: 0; 
+	}
+
+/*==============================================================================*/
+/* Webkit Scrollbars */
+/*==============================================================================*/
+::-webkit-scrollbar {
+	background: #111;
+	width: 10px;
 }
 
-section:nth-child(2n) .ui-slider {
-	background: #333;
-	border-color: #333;
+::-webkit-scrollbar-track {
+	border-left: 1px solid #000;
 }
 
-.ui-slider .ui-slider-handle { 
-	background: #555;
-	cursor: e-resize;
-	height: 12px;
-	margin: 0;
-	position: absolute;
-	top: 0;
-	transition: background 200ms;
-	width: 24px; 
-	z-index: 2;
+::-webkit-scrollbar-thumb {
+	background: #444;
+	border-left: 1px solid #000;
 }
 
-.ui-slider .ui-slider-handle:hover { 
-	background: #999; 
-}
-
-.ui-slider .ui-slider-handle:active { 
-	background: #f33; 
-}
-
-.ui-slider .ui-slider-range { 
-	background-position: 0 0;
-	border: 0; 
-	display: block;
-	font-size: .7em; 
-	height: 100%; 
-	position: absolute; 
-	top: 0;
-	z-index: 1; 	 
-}
-
-.ui-slider .ui-slider-range-min {
-	left: 0;
-
-}
-.ui-slider .ui-slider-range-max { 
-	right: 0; 
+::-webkit-scrollbar-thumb:hover {
+	background: #666;	
 }
 
 /*==============================================================================*/

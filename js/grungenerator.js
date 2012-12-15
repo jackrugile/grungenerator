@@ -1,16 +1,19 @@
 var GrunGenerator = function(){
 	var self = this;
-	
+		
 	self.settings = {
 		width: 800,
 		height: 800,
 		particleCount: 1000,
+		particleSizeMin: 3,
+		particleSizeMax: 10,
 		polygonCount: 200
 	}
 	
 	self.controls = {
 		width: {
 			setting: 'width',
+			range: false,
 			min: 50,
 			max: 4000,
 			initial: self.settings.width,
@@ -20,6 +23,7 @@ var GrunGenerator = function(){
 		},
 		height: {
 			setting: 'height',
+			range: false,
 			min: 50,
 			max: 4000,
 			initial: self.settings.height,
@@ -29,6 +33,7 @@ var GrunGenerator = function(){
 		},
 		particleCount: {
 			setting: 'particleCount',
+			range: false,
 			min: 0,
 			max: 100000,
 			initial: self.settings.particleCount,
@@ -36,8 +41,20 @@ var GrunGenerator = function(){
 			inputElem: $('#gg-particle-count'),
 			sliderElem: $('#gg-particle-count-slider')
 		},
+		particleSize: {
+			setting: 'particleSize',
+			range: true,
+			min: 1,
+			max: 100,
+			initial: [self.settings.particleSizeMin, self.settings.particleSizeMax],
+			current: [self.settings.particleSizeMin, self.settings.particleSizeMax],
+			inputElemMin: $('#gg-particle-size-min'),
+			inputElemMax: $('#gg-particle-size-max'),
+			sliderElem: $('#gg-particle-size-slider')
+		},
 		polygonCount: {
 			setting: 'polygonCount',
+			range: false,
 			min: 0,
 			max: 10000,
 			initial: self.settings.polygonCount,
@@ -48,7 +65,8 @@ var GrunGenerator = function(){
 	};
 	
 	self.buttons = {
-		generate: $('#gg-generate')
+		generate: $('#gg-generate'),
+		reset: $('#gg-reset')
 	};
 	
 	self.init = function(){
@@ -67,6 +85,7 @@ var GrunGenerator = function(){
 		self.setSlideControl(self.controls.width);
 		self.setSlideControl(self.controls.height);
 		self.setSlideControl(self.controls.particleCount);
+		self.setSlideControl(self.controls.particleSize);
 		self.setSlideControl(self.controls.polygonCount);
 		self.setButtons();
 		self.setCanvasContainer();
@@ -76,49 +95,128 @@ var GrunGenerator = function(){
 	};
 	
 	self.reset = function(){
-		
+		self.resetSlideControl(self.controls.width);
+		self.resetSlideControl(self.controls.height);
+		self.resetSlideControl(self.controls.particleCount);
+		self.resetSlideControl(self.controls.polygonCount);
 	};
 	
-	self.setSlideControl = function(control){		
-		control.sliderElem.slider({
-            min: control.min,
-            max: control.max,
-            value: control.current,
-			slide: function(e, ui){
-				control.inputElem.val(ui.value);
-				control.current = self.settings[control.setting] = ui.value;
-			}
-        });
-		
-		control.inputElem.val(control.current);
-				
-		control.inputElem.on('keyup', function(){
-			this.value = this.value.replace(/\D/g,'');
-            control.sliderElem.slider('value', this.value);
-        });
-		
-		control.inputElem.on('change', function(){															
-			this.value = this.value.replace(/\D/g,'');			
-			if(this.value > control.max){
-				this.value = control.max;
-			}
-			if(this.value < control.min){
-				this.value = control.min;
-			}
-			control.current = self.settings[control.setting] = this.value;			
-        });
-		
-		control.inputElem.on('keydown', function(e){
-			if(e.keyCode == '13'){
-				$(this).blur();
-			}		
-		});
+	self.setSlideControl = function(control){	
+		/*==============================================================================*/
+		/* Single Slider */
+		/*==============================================================================*/
+		if(!control.range){
+			control.sliderElem.slider({
+				range: control.range,
+				min: control.min,
+				max: control.max,
+				value: control.current,
+				slide: function(e, ui){
+					control.inputElem.val(ui.value);
+					control.current = self.settings[control.setting] = ui.value;
+				}
+			});
+			
+			control.inputElem.val(self.settings[control.setting]);	
+			
+			control.inputElem.on('change', function(){															
+				this.value = this.value.replace(/\D/g,'');
+				if(this.value > control.max){
+					this.value = control.max;
+				}
+				if(this.value < control.min){
+					this.value = control.min;
+				}
+				if(!this.value){
+					this.value = 0;
+				}
+				control.current = self.settings[control.setting] = this.value;			
+			});
+			
+			control.inputElem.on('keydown', function(e){
+				if(e.keyCode == '13'){
+					$(this).blur();
+				}		
+			});		
+		} 
+		/*==============================================================================*/
+		/* Range Slider */
+		/*==============================================================================*/
+		if(control.range){
+			control.sliderElem.slider({
+				range: control.range,
+				min: control.min,
+				max: control.max,
+				values: control.current,
+				slide: function(e, ui){
+					control.inputElemMin.val(ui.values[0]);
+					control.inputElemMax.val(ui.values[1]);
+					control.current[0] = self.settings[control.setting+'Min'] = ui.values[0];
+					control.current[1] = self.settings[control.setting+'Max'] = ui.values[1];
+				}
+			});
+			
+			control.inputElemMin.val(self.settings[control.setting+'Min']);
+			control.inputElemMax.val(self.settings[control.setting+'Max']);
+			
+			control.inputElemMin.on('change', function(){															
+				this.value = this.value.replace(/\D/g,'');
+				if(this.value > control.max){
+					this.value = control.max;
+				}
+				if(this.value < control.min){
+					this.value = control.min;
+				}
+				if(!this.value){
+					this.value = 0;
+				}
+				control.current[0] = self.settings[control.setting+'Min'] = this.value;			
+			});
+			
+			control.inputElemMax.on('change', function(){															
+				this.value = this.value.replace(/\D/g,'');
+				if(this.value > control.max){
+					this.value = control.max;
+				}
+				if(this.value < control.min){
+					this.value = control.min;
+				}
+				if(!this.value){
+					this.value = 0;
+				}
+				control.current[1] = self.settings[control.setting+'Max'] = this.value;			
+			});
+			
+			control.inputElemMin.on('keydown', function(e){
+				if(e.keyCode == '13'){
+					$(this).blur();
+				}		
+			});
+			
+			control.inputElemMax.on('keydown', function(e){
+				if(e.keyCode == '13'){
+					$(this).blur();
+				}		
+			});
+		} 
+	};
+	
+	self.resetSlideControl = function(control){
+		control.sliderElem.slider('value', control.initial);
+		control.inputElem.val(control.initial);
+		self.controls[control.setting].current = control.initial;
+		self.settings[control.setting] = control.initial;
 	};
 	
 	self.setButtons = function(){
 		self.buttons.generate.on('click', function(e){
 			e.preventDefault();
 			self.generate();
+		});
+		
+		self.buttons.reset.on('click', function(e){
+			e.preventDefault();
+			self.reset();
 		});
 	};
 	
@@ -165,8 +263,8 @@ var GrunGenerator = function(){
 		
 		var i = self.settings.particleCount;
 		while(i--){
-			var width = self.rand(1, 6)/3;
-			var height = self.rand(1, 6)/3;
+			var width = self.rand(self.settings.particleSizeMin, self.settings.particleSizeMax)/3;
+			var height = self.rand(self.settings.particleSizeMin, self.settings.particleSizeMax)/3;
 			self.ctx.save();
 			self.ctx.translate(self.rand(0, self.settings.width) - (width/2), self.rand(0, self.settings.height) - (height/2));
 			self.ctx.rotate(self.rand(0, Math.PI * 2));
