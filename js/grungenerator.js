@@ -13,7 +13,7 @@ var GrunGenerator = function(){
 	self.controls = {
 		width: {
 			setting: 'width',
-			range: 'min',
+			range: false,
 			min: 50,
 			max: 4000,
 			initial: self.settings.width,
@@ -23,7 +23,7 @@ var GrunGenerator = function(){
 		},
 		height: {
 			setting: 'height',
-			range: 'min',
+			range: false,
 			min: 50,
 			max: 4000,
 			initial: self.settings.height,
@@ -33,7 +33,7 @@ var GrunGenerator = function(){
 		},
 		particleCount: {
 			setting: 'particleCount',
-			range: 'min',
+			range: false,
 			min: 0,
 			max: 100000,
 			initial: self.settings.particleCount,
@@ -54,7 +54,7 @@ var GrunGenerator = function(){
 		},
 		polygonCount: {
 			setting: 'polygonCount',
-			range: 'min',
+			range: false,
 			min: 0,
 			max: 10000,
 			initial: self.settings.polygonCount,
@@ -66,7 +66,6 @@ var GrunGenerator = function(){
 	
 	self.buttons = {
 		generate: $('#gg-generate'),
-		exportPNG: $('#gg-export'),		
 		reset: $('#gg-reset')
 	};
 	
@@ -99,15 +98,14 @@ var GrunGenerator = function(){
 		self.resetSlideControl(self.controls.width);
 		self.resetSlideControl(self.controls.height);
 		self.resetSlideControl(self.controls.particleCount);
-		self.resetSlideControl(self.controls.particleSize);
 		self.resetSlideControl(self.controls.polygonCount);
 	};
 	
-	self.setSlideControl = function(control){			
-		if(control.range === 'min' || control.range === 'max'){
-			/*==============================================================================*/
-			/* Single Slider */
-			/*==============================================================================*/
+	self.setSlideControl = function(control){	
+		/*==============================================================================*/
+		/* Single Slider */
+		/*==============================================================================*/
+		if(!control.range){
 			control.sliderElem.slider({
 				range: control.range,
 				min: control.min,
@@ -118,7 +116,7 @@ var GrunGenerator = function(){
 					control.current = self.settings[control.setting] = ui.value;
 				}
 			});
-						
+			
 			control.inputElem.val(self.settings[control.setting]);	
 			
 			control.inputElem.on('change', function(){															
@@ -132,9 +130,7 @@ var GrunGenerator = function(){
 				if(!this.value){
 					this.value = 0;
 				}
-				control.current = this.value;
-				self.settings[control.setting] = this.value;
-				control.sliderElem.slider('value', this.value);
+				control.current = self.settings[control.setting] = this.value;			
 			});
 			
 			control.inputElem.on('keydown', function(e){
@@ -142,10 +138,11 @@ var GrunGenerator = function(){
 					$(this).blur();
 				}		
 			});		
-		} else {
-			/*==============================================================================*/
-			/* Range Slider */
-			/*==============================================================================*/
+		} 
+		/*==============================================================================*/
+		/* Range Slider */
+		/*==============================================================================*/
+		if(control.range){
 			control.sliderElem.slider({
 				range: control.range,
 				min: control.min,
@@ -170,15 +167,10 @@ var GrunGenerator = function(){
 				if(this.value < control.min){
 					this.value = control.min;
 				}
-				if(this.value > self.settings[control.setting+'Max']){
-					this.value = self.settings[control.setting+'Max'];
-				}
 				if(!this.value){
 					this.value = 0;
-				}				
-				control.current[0] = this.value;
-				self.settings[control.setting+'Min'] = this.value;
-				control.sliderElem.slider('value', [this.value, self.settings[control.setting+'Max']]);
+				}
+				control.current[0] = self.settings[control.setting+'Min'] = this.value;			
 			});
 			
 			control.inputElemMax.on('change', function(){															
@@ -189,15 +181,10 @@ var GrunGenerator = function(){
 				if(this.value < control.min){
 					this.value = control.min;
 				}
-				if(this.value < self.settings[control.setting+'Min']){
-					this.value = self.settings[control.setting+'Min'];
-				}
 				if(!this.value){
 					this.value = 0;
 				}
-				control.current[1] = this.value;
-				self.settings[control.setting+'Max'] = this.value;
-				control.sliderElem.slider('value', [self.settings[control.setting+'Min'], this.value]);
+				control.current[1] = self.settings[control.setting+'Max'] = this.value;			
 			});
 			
 			control.inputElemMin.on('keydown', function(e){
@@ -215,30 +202,16 @@ var GrunGenerator = function(){
 	};
 	
 	self.resetSlideControl = function(control){
-		if(control.range === 'min' || control.range === 'max'){
-			control.sliderElem.slider('value', control.initial);
-			control.inputElem.val(control.initial);
-			self.controls[control.setting].current = control.initial;
-			self.settings[control.setting] = control.initial;
-		} else {
-			control.sliderElem.slider('values', [control.initial[0], control.initial[1]]);
-			control.inputElemMin.val(control.initial[0]);
-			control.inputElemMax.val(control.initial[1]);
-			self.controls[control.setting].current = [control.initial[0], control.initial[1]];
-			self.settings[control.setting+'Min'] = control.initial[0];
-			self.settings[control.setting+'Max'] = control.initial[1];
-		}
+		control.sliderElem.slider('value', control.initial);
+		control.inputElem.val(control.initial);
+		self.controls[control.setting].current = control.initial;
+		self.settings[control.setting] = control.initial;
 	};
 	
 	self.setButtons = function(){
 		self.buttons.generate.on('click', function(e){
 			e.preventDefault();
 			self.generate();
-		});
-		
-		self.buttons.exportPNG.on('click', function(e){
-			e.preventDefault();
-			self.exportPNG();
 		});
 		
 		self.buttons.reset.on('click', function(e){
@@ -304,20 +277,9 @@ var GrunGenerator = function(){
 		while(j--){
 			var polygon = new self.Polygon();
 			polygon.render();
-		};		
+		};
+		
 	};
-	
-	self.exportPNG = function(){
-		var dataURL = self.canvas.toDataURL();
-		$.ajax({
-			type: 'POST',
-			url: 'create-image.php',
-			data: 'dataurl='+dataURL,
-			success: function(data){
-				document.location.href = 'download-image.php?img='+data;
-			}
-		});	
-	}
 	
 	self.compare = function(a, b) {
 		if (a.angle < b.angle)
