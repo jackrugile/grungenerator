@@ -27,44 +27,99 @@
 				<h1><strong>Grun</strong>Generator<span>Beta</span></h1>
 			</header>			
 			<div class="controls">
-				<section class="clearfix">
-					<label for="gg-width">Width</label>	
-					<input type="text" id="gg-width" tabindex="1" />									
-					<div id="gg-width-slider"></div>
-				</section>				
-				<section class="clearfix">
-					<label for="gg-height">Height</label>	
-					<input type="text" id="gg-height" tabindex="2" />									
-					<div id="gg-height-slider"></div>	
-				</section>				
-				<section class="clearfix">
-					<label for="gg-particle-count">Particle Count</label>	
-					<input type="text" id="gg-particle-count" tabindex="3" />
-					<div id="gg-particle-count-slider"></div>
-				</section>
-				<section class="clearfix">
-					<div class="range">
-						<label for="gg-particle-size">Particle Size</label>	
-						<input type="text" id="gg-particle-size-min" class="min" tabindex="3" />
-						<input type="text" id="gg-particle-size-max" class="max" tabindex="3" />
-					</div>									
-					<div id="gg-particle-size-slider"></div>
-				</section>
-				<section class="clearfix">			
-					<label for="gg-polygon-count">Polygon Count</label>			
-					<input type="text" id="gg-polygon-count" tabindex="4" />									
-					<div id="gg-polygon-count-slider"></div>
-				</section>				
-			</div><!-- end .controls -->			
-			<a href="#" class="button" id="gg-generate" tabindex="5"><span class="entypo-flash"></span>Generate</a>
-			<a href="#" class="button" id="gg-export" tabindex="6"><span class="entypo-export"></span>Export PNG</a>
-			<a href="#" class="button" id="gg-reset" tabindex="7"><span class="entypo-arrows-ccw"></span>Reset</a>	
+			
+				<div class="control-group">
+					<h2>Dimensions</h2>
+					<section class="clearfix">
+						<label for="gg-width">Width <span>(px)</span></label>	
+						<input type="text" id="gg-width" tabindex="1" />									
+						<div id="gg-width-slider"></div>
+					</section>				
+					<section class="clearfix">
+						<label for="gg-height">Height <span>(px)</span></label>	
+						<input type="text" id="gg-height" tabindex="2" />									
+						<div id="gg-height-slider"></div>	
+					</section>	
+				</div><!-- end .control-group -->	
+				
+				<div class="control-group">	
+					<h2>Particles</h2>
+					<section class="clearfix">
+						<label for="gg-particle-count">Particle Count</label>	
+						<input type="text" id="gg-particle-count" tabindex="3" />
+						<div id="gg-particle-count-slider"></div>
+					</section>
+					<section class="clearfix">
+						<div class="range">
+							<label for="gg-particle-size">Particle Size</label>	
+							<input type="text" id="gg-particle-size-min" class="min" tabindex="4" />
+							<input type="text" id="gg-particle-size-max" class="max" tabindex="5" />														
+							<div id="gg-particle-size-slider"></div>
+						</div>	
+					</section>
+					<section class="clearfix">
+						<div class="range">
+							<label for="gg-particle-alpha">Particle Alpha</label>	
+							<input type="text" id="gg-particle-alpha-min" class="min" tabindex="6" />
+							<input type="text" id="gg-particle-alpha-max" class="max" tabindex="7" />															
+							<div id="gg-particle-alpha-slider"></div>
+						</div>
+					</section>
+				</div><!-- end .control-group -->	
+				
+				<div class="control-group">	
+					<h2>Polygons</h2>
+					<section class="clearfix">			
+						<label for="gg-polygon-count">Polygon Count</label>			
+						<input type="text" id="gg-polygon-count" tabindex="8" />									
+						<div id="gg-polygon-count-slider"></div>
+					</section>
+					<section class="clearfix">
+						<div class="range">
+							<label for="gg-polygon-size">Polygon Size</label>	
+							<input type="text" id="gg-polygon-size-min" class="min" tabindex="9" />
+							<input type="text" id="gg-polygon-size-max" class="max" tabindex="10" />
+							<div id="gg-polygon-size-slider"></div>
+						</div>									
+					</section>
+					<section class="clearfix">
+						<div class="range">
+							<label for="gg-polygon-sides">Polygon Sides</label>	
+							<input type="text" id="gg-polygon-sides-min" class="min" tabindex="11" />
+							<input type="text" id="gg-polygon-sides-max" class="max" tabindex="12" />
+							<div id="gg-polygon-sides-slider"></div>
+						</div>
+					</section>
+					<section class="clearfix">
+						<div class="range">
+							<label for="gg-polygon-alpha">Polygon Alpha</label>	
+							<input type="text" id="gg-polygon-alpha-min" class="min" tabindex="13" />
+							<input type="text" id="gg-polygon-alpha-max" class="max" tabindex="14" />
+							<div id="gg-polygon-alpha-slider"></div>
+						</div>
+					</section>		
+				</div><!-- end .control-group -->	
+				
+				<div class="control-group">	
+					<h2>Actions</h2>
+					<section class="clearfix">						
+						<a href="#" class="button" id="gg-generate" tabindex="15"><span class="entypo-flash"></span>Generate</a>
+						<a href="#" class="button" id="gg-invert" tabindex="16"><span class="entypo-adjust"></span>Invert</a>
+						<a href="#" class="button" id="gg-export" tabindex="17"><span class="entypo-export"></span>Export PNG</a>
+						<a href="#" class="button" id="gg-reset" tabindex="18"><span class="entypo-arrows-ccw"></span>Reset</a>	
+					</section>		
+				</div><!-- end .control-group -->	
+				
+			</div><!-- end .controls -->	
 		</div><!-- end .panel -->		
 		<div class="canvas-container">
-	</div><!-- end .canvas-container -->			
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-<script src="js/lib.js"></script>
+			<div class="canvas-container-inner">
+				<img src="" class="canvas-image" />
+			</div><!-- end .canvas-container-inner -->
+		</div><!-- end .canvas-container -->			
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<script src="js/lib.js"></script>
 		<script src="js/grungenerator.js"></script>
 		<script src="js/main.js"></script>
 	</body>
