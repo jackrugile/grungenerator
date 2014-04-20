@@ -6,12 +6,12 @@ var GrunGenerator = function(){
 		padding: 44,
 		width: 800,
 		height: 800,
-		particleCount: 1000,
+		particleCount: 2000,
 		particleSizeMin: 1,
-		particleSizeMax: 4,
+		particleSizeMax: 5,
 		particleAlphaMin: 1,
-		particleAlphaMax: 20,
-		polygonCount: 200,
+		particleAlphaMax: 80,
+		polygonCount: 0,
 		polygonSizeMin: 1,
 		polygonSizeMax: 4,
 		polygonSidesMin: 3,
@@ -360,8 +360,8 @@ var GrunGenerator = function(){
 	};
 	
 	self.rand = function(min, max){
-        return Math.floor( (Math.random() * (max - min + 1) ) + min);
-    };
+		return Math.random() * ( max - min ) + min;
+	};
 	
 	self.generate = function(){
 		self.setDimensions();		
