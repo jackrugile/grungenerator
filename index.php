@@ -15,8 +15,6 @@
 		<meta property="og:image" content="http://jackrugile.com/grungenerator/img/fb.png">
 		<meta property="og:url" content="http://jackrugile.com/grungenerator/">
 		<meta property="og:type" content="website">
-		<script type="text/javascript" src="//use.typekit.net/eyn6zuu.js"></script>
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 		<!--[if IE]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 		<link href="css/style.css" rel="stylesheet">
 		<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
@@ -122,5 +120,13 @@
 		<script src="js/lib.js"></script>
 		<script src="js/grungenerator.js"></script>
 		<script src="js/main.js"></script>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-5693606-7', 'jackrugile.com');
+			ga('send', 'pageview');
+		</script>
 	</body>
 </html>

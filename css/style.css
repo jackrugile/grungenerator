@@ -11,7 +11,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 body {
 	background: #191919;
 	color: #fff;
-	font: 400 100%/20px 'myriad-pro', helvetica, arial, sans-serif;		
+	font: 400 100%/20px helvetica, arial, sans-serif;		
 }
 
 * {
@@ -96,7 +96,7 @@ header h1 span {
 	;
 	color: #aaa;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: bold;
 	height: 32px;
 	line-height: 32px;
 	margin: 0 0 1px;
@@ -142,7 +142,7 @@ input[type="text"] {
 	color: #fff;
 	display: block;
 	float: left;
-	font: 400 11px/32px 'Open Sans', helvetica, arial, sans-serif;
+	font: 400 11px/32px helvetica, arial, sans-serif;
 	height: 32px;
 	margin: 0;
 	padding: 0 12px;
